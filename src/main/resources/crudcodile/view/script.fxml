@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="crudcodile.controller.ScriptController"
+            styleClass="root-dark">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+            <children>
+                <VBox alignment="CENTER" styleClass="logo-box-small">
+                    <Label text="C" styleClass="logo-letter-small" />
+                </VBox>
+                <VBox spacing="1">
+                    <Label text="CONSOLA SQL" styleClass="brand-title-small" />
+                    <Label text="CRUD local: SELECT • INSERT • UPDATE • DELETE" styleClass="brand-subtitle" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label text="LOCAL ONLY" styleClass="badge" />
+            </children>
+            <padding>
+                <Insets top="16" right="22" bottom="14" left="22" />
+            </padding>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="12" styleClass="workspace">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="9">
+                    <Button text="Abrir"
+                            onAction="#abrirScript"
+                            styleClass="button-secondary" />
+                    <Button text="Guardar"
+                            onAction="#guardarScript"
+                            styleClass="button-secondary" />
+                    <Button text="Guardar como"
+                            onAction="#guardarComo"
+                            styleClass="button-secondary" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="botonEjecutar"
+                            text="▶ Ejecutar"
+                            onAction="#ejecutarSql"
+                            styleClass="button-primary" />
+                </HBox>
+
+                <Label fx:id="labelArchivo"
+                       text="Nuevo script sin guardar"
+                       styleClass="muted-small" />
+                <Label text="Comandos permitidos: SELECT, INSERT, UPDATE y DELETE. Una sentencia por ejecucion."
+                       styleClass="muted-small" />
+
+                <TextArea fx:id="areaSql"
+                          promptText="Escribe una sentencia SQL. Ejemplo: SELECT * FROM usuarios;"
+                          prefRowCount="12"
+                          wrapText="false"
+                          styleClass="sql-editor"
+                          VBox.vgrow="ALWAYS" />
+
+                <Separator />
+
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="RESULTADO" styleClass="section-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="labelResultado"
+                           text="Una sentencia por ejecucion"
+                           styleClass="muted-small" />
+                </HBox>
+
+                <TableView fx:id="tablaResultado"
+                           prefHeight="250"
+                           VBox.vgrow="ALWAYS" />
+            </children>
+            <padding>
+                <Insets top="18" right="22" bottom="18" left="22" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>

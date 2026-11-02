@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="crudcodile.controller.PrincipalController"
+            styleClass="root-dark">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="16" styleClass="topbar">
+            <children>
+                <VBox alignment="CENTER" styleClass="logo-box-small">
+                    <Label text="C" styleClass="logo-letter-small" />
+                </VBox>
+                <VBox spacing="1">
+                    <Label text="CRUDCODILE" styleClass="brand-title-small" />
+                    <Label fx:id="labelConexion" text="SSH / MariaDB" styleClass="brand-subtitle" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Inicio"
+                        onAction="#volverInicio"
+                        styleClass="button-secondary" />
+                <Button fx:id="botonScript"
+                        text="Script"
+                        onAction="#nuevoScript"
+                        styleClass="button-secondary" />
+                <Button fx:id="botonAbrirScript"
+                        text="📁"
+                        onAction="#abrirScriptExistente"
+                        styleClass="folder-button" />
+                <Label text="SQLite local" styleClass="badge" />
+            </children>
+            <padding>
+                <Insets top="16" right="24" bottom="14" left="24" />
+            </padding>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox prefWidth="285" spacing="12" styleClass="sidebar">
+            <children>
+                <Label fx:id="labelOrigenTablas" text="TABLAS REMOTAS" styleClass="section-title" />
+                <Label fx:id="labelEsquemaOrigen" text="Esquema: its5a" styleClass="muted-small" />
+                <ListView fx:id="listaTablas" VBox.vgrow="ALWAYS" />
+                <Button fx:id="botonDescargar"
+                        text="Descargar / actualizar"
+                        onAction="#descargarTabla"
+                        maxWidth="Infinity"
+                        styleClass="button-primary" />
+                <Button fx:id="botonAbrirLocal"
+                        text="Abrir copia local"
+                        onAction="#abrirTablaLocal"
+                        maxWidth="Infinity"
+                        styleClass="button-secondary" />
+            </children>
+            <padding>
+                <Insets top="22" right="18" bottom="22" left="22" />
+            </padding>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="14" styleClass="workspace">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <VBox spacing="2">
+                        <Label text="DATOS LOCALES" styleClass="section-title" />
+                        <Label fx:id="labelTablaActual"
+                               text="Descarga o abre una tabla para comenzar"
+                               styleClass="muted-small" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="botonNuevo"
+                            text="+ Nuevo"
+                            onAction="#nuevoRegistro"
+                            styleClass="button-primary" />
+                    <Button fx:id="botonEditar"
+                            text="Editar"
+                            onAction="#editarRegistro"
+                            styleClass="button-secondary" />
+                    <Button fx:id="botonEliminar"
+                            text="Eliminar"
+                            onAction="#eliminarRegistro"
+                            styleClass="button-danger" />
+                </HBox>
+
+                <Separator />
+                <TableView fx:id="tablaDatos" VBox.vgrow="ALWAYS" />
+            </children>
+            <padding>
+                <Insets top="22" right="24" bottom="16" left="24" />
+            </padding>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_LEFT" styleClass="statusbar">
+            <children>
+                <Label fx:id="labelEstado" text="Listo" styleClass="status-text" />
+            </children>
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20" />
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>
